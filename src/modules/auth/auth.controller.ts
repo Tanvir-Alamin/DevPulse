@@ -19,13 +19,12 @@ const signUp = async (req: Request, res: Response) => {
 };
 const logIn = async (req: Request, res: Response) => {
   try {
-    const result = await req.body;
+    const result = await authService.logInUser(req.body);
     res.status(201).json({
       success: true,
       message: "Login successful",
-      data: result.rows[0],
+      data: result,
     });
-
   } catch (error: unknown) {
     res.status(500).json({
       success: false,

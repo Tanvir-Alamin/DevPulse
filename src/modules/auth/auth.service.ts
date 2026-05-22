@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import type { ILoginUser, ISignUpUser } from "./interface";
 import { pool } from "../../db";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
+import config from "../../config";
 
 const signUpUserDataIntoDB = async (payLoad: ISignUpUser) => {
   const { name, password, email, role } = payLoad;
@@ -35,8 +36,13 @@ const logInUser = async (payLoad: ILoginUser) => {
     name: user.name,
     role: user.role,
   };
-  const accessToken = 
+  const token = jwt.sign(jwtPayLoad, config.Jwt_Secret as string, {
+    expiresIn: "1d",
+  });
+  return { token, user };
 };
+
 export const authService = {
   signUpUserDataIntoDB,
+  logInUser,
 };
