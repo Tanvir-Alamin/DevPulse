@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import type { ILoginUser, ISignUpUser } from "./interface";
 import { pool } from "../../db";
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 import config from "../../config";
 
 const signUpUserDataIntoDB = async (payLoad: ISignUpUser) => {
