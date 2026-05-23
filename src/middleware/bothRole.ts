@@ -21,3 +21,4 @@ const bothRole = (...roles: Role_type[]) => {
     }
   };
 };
+export default bothRole;
