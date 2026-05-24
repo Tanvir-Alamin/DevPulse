@@ -23,7 +23,7 @@ const logInUser = async (payLoad: ILoginUser) => {
     [email],
   );
 
-  if (userData.rows[0] === 0) {
+  if (userData.rows.length === 0) {
     throw new Error("invalid Credential");
   }
   const user = userData.rows[0];

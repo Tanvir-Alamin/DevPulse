@@ -72,7 +72,7 @@ const issueUpdate = async (req: Request, res: Response) => {
 const deleteIssue = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
-    const result = issueService.deleteIssue(id);
+    const result = await issueService.deleteIssue(id);
     res.status(200).json({
       success: true,
       message: "Issue deleted successfully",
